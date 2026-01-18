@@ -1,0 +1,1943 @@
+<!DOCTYPE html>
+<html lang="en" id="htmlRoot">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intervue AI - Professional Career Development Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #ccdefe80;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: #ffffff;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #00aaff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #0f172a;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #475569;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: #0f172a;
+        }
+
+        .nav-right {
+            margin-left: auto;
+        }
+
+        .page {
+            display: none;
+            padding-top: 100px;
+            min-height: 100vh;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            color: #0f172a;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #64748b;
+            margin-bottom: 40px;
+        }
+
+        .cta-button {
+            background: #2563eb;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
+            background: #1d4ed8;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .feature-card {
+            background: #ffffff;
+            border: 1px solid #8e8e8e;
+            border-radius: 12px;
+            padding: 30px;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #2563eb;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card h3 {
+            color: #1e40af;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: #4b5563;
+            font-size: 16px;
+        }
+
+        .content-section {
+            padding: 60px 0;
+        }
+
+        .content-section h2 {
+            font-size: 42px;
+            margin-bottom: 30px;
+            color: #111827;
+        }
+
+        .content-section p {
+            font-size: 18px;
+            color: #4b5563;
+            margin-bottom: 20px;
+        }
+
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .step {
+            background: #ffffff;
+            border-left: 4px solid #2563eb;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .step h3 {
+            color: #111827;
+            margin-bottom: 10px;
+        }
+
+        .step-number {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        footer {
+            background: #0e2047;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 80px;
+            border-top: 1px solid #1f2937;
+        }
+
+        footer p {
+            color: #9ca3af;
+        }
+
+        /* InterBlob Interface Styles */
+        .interblob-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .avatar-section {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .avatar-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .avatar-circle {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1a5cea 0%, #e73119 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        .avatar-circle.speaking {
+            transform: scale(1.3);
+            box-shadow: 0 12px 30px rgba(37, 99, 235, 0.5);
+        }
+
+        .avatar-ping {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+
+        @keyframes ping {
+            75%, 100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+
+        .avatar-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse {
+            40% {
+                opacity: 0.5;
+            }
+        }
+
+        .avatar-status {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: 500;
+            color: #64748b;
+        }
+
+        .avatar-status.speaking {
+            color: #154ec9;
+        }
+
+        .status-box {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .status-text {
+            color: #374151;
+            font-weight: 500;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .controls-box {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .start-button {
+            width: 100%;
+            background: #063ea6;
+            color: white;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .start-button:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+        }
+
+        .recording-controls {
+            display: none;
+        }
+
+        .recording-controls.active {
+            display: block;
+        }
+
+        .record-button {
+            width: auto;
+            background: #2563eb;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .record-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .record-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .record-button:hover {
+            background: #1d4ed8;
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+        }
+
+        .record-button:active {
+            transform: scale(0.95);
+        }
+
+        .record-button.recording {
+            background: #dc2626;
+            animation: pulse-button 2s infinite;
+        }
+
+        @keyframes pulse-button {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7);
+            }
+            50% {
+                box-shadow: 0 0 0 10px rgba(220, 38, 38, 0);
+            }
+        }
+
+        .record-button.recording:hover {
+            background: #b91c1c;
+        }
+
+        .record-button svg {
+            position: relative;
+            z-index: 1;
+        }
+
+        .record-button span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .text-input-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .text-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .text-input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .send-button {
+            background: #2563eb;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .send-button:hover {
+            background: #1d4ed8;
+        }
+
+        .conversation-box {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .conversation-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 20px;
+        }
+
+        .conversation-history {
+            max-height: 500px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .message {
+            padding: 16px;
+            border-radius: 12px;
+            border-left: 4px solid;
+        }
+
+        .message.user {
+            background: #f0fdf4;
+            border-left-color: #22c55e;
+            margin-left: 40px;
+        }
+
+        .message.assistant {
+            background: #eff6ff;
+            border-left-color: #2563eb;
+            margin-right: 40px;
+        }
+
+        .message-role {
+            font-size: 14px;
+            font-weight: 600;
+            color: #64748b;
+            margin-bottom: 8px;
+        }
+
+        .message-content {
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #9ca3af;
+        }
+
+        .feedback-button {
+            width: 100%;
+            background: #059669;
+            color: white;
+            padding: 14px 32px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        .feedback-button:hover {
+            background: #047857;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(5, 150, 105, 0.4);
+        }
+
+        .feedback-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Grade Card Styles */
+        .grade-card {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .grade-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .grade-header h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .grade-circle-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .grade-circle {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2563eb 0%, #2563eb 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.3);
+            position: relative;
+        }
+
+        .grade-circle::before {
+            content: '';
+            position: absolute;
+            inset: 8px;
+            border-radius: 50%;
+            background: white;
+        }
+
+        .grade-letter {
+            font-size: 56px;
+            font-weight: 800;
+            color: #2e5fc9;
+            z-index: 1;
+            line-height: 1;
+        }
+
+        .grade-score {
+            font-size: 18px;
+            font-weight: 600;
+            color: #64748b;
+            z-index: 1;
+            margin-top: 4px;
+        }
+
+        .grade-metrics {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .metric {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .metric-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #475569;
+        }
+
+        .metric-bar {
+            width: 100%;
+            height: 12px;
+            background: #f1f5f9;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .metric-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #2563eb 0%, #2563eb 100%);
+            transition: width 1s ease-out;
+            border-radius: 6px;
+        }
+
+        /* Upload Area Styles */
+        .upload-area {
+            border: 2px dashed #cbd5e1;
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .upload-area:hover {
+            border-color: #2563eb;
+            background: #f8fafc;
+        }
+
+        /* Email Textarea */
+        .email-textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: inherit;
+            line-height: 1.6;
+            resize: vertical;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .email-textarea:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        /* Feedback formatting */
+        .feedback-section {
+            margin-bottom: 24px;
+        }
+
+        .feedback-section h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 12px;
+        }
+
+        .feedback-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .feedback-section li {
+            padding: 8px 0 8px 24px;
+            position: relative;
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        .feedback-section li::before {
+            content: '•';
+            position: absolute;
+            left: 8px;
+            color: #2563eb;
+            font-weight: bold;
+        }
+
+        /* Streaming indicator */
+        .streaming-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #2563eb;
+            border-radius: 50%;
+            animation: pulse 1.5s ease-in-out infinite;
+            margin-left: 8px;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo" onclick="showPage('home')">Intervue AI</div>
+
+                <ul class="nav-links">
+                    <li><a onclick="showPage('interview')" data-en="Interview Me" data-fr="Entraînement Entretien">Interview Me</a></li>
+                    <li><a onclick="showPage('resume')" data-en="Resume/CV Feedback" data-fr="Analyse CV">Resume/CV Feedback</a></li>
+                    <li><a onclick="showPage('email')" data-en="Cold Email Feedback" data-fr="Analyse Email">Cold Email Feedback</a></li>
+                </ul>
+
+                <div class="language-switcher" style="display: flex; align-items: center; gap: 6px; margin-left: 20px;">
+                    <span class="lang-flag active" id="langEN" onclick="setLanguage('en')" style="cursor: pointer; font-size: 18px; opacity: 1;" title="English">🇺🇸</span>
+                    <span style="color: #cbd5e1; font-size: 14px;">|</span>
+                    <span class="lang-flag" id="langFR" onclick="setLanguage('fr')" style="cursor: pointer; font-size: 18px; opacity: 0.4;" title="Français">🇫🇷</span>
+                </div>
+
+                <ul class="nav-links nav-right">
+                    <li><a onclick="showPage('how')" data-en="How it Works" data-fr="Comment ça marche">How it Works</a></li>
+                    <li><a onclick="showPage('about')" data-en="About Us" data-fr="À propos">About Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <div class="container">
+            <div class="hero">
+                <h1 data-en="Elevate Your Career" data-fr="Boostez Votre Carrière">Elevate Your Career</h1>
+                <p data-en="AI-powered tools to help you land your dream job" data-fr="Outils IA pour décrocher l'emploi de vos rêves">AI-powered tools to help you land your dream job</p>
+                <p data-en="Available in English & French 🇺🇸 🇫🇷" data-fr="Disponible en Anglais et Français 🇺🇸 🇫🇷" style="font-size: 16px; color: #2563eb; font-weight: 600; margin-bottom: 20px;">Available in English & French 🇺🇸 🇫🇷</p>
+                <button class="cta-button" onclick="showPage('how')" data-en="Get Started" data-fr="Commencer">Get Started</button>
+            </div>
+
+            <div class="features">
+                <div class="feature-card" onclick="showPage('interview')">
+                    <h3 data-en="Interview Practice" data-fr="Entraînement Entretien">Interview Practice</h3>
+                    <p data-en="Realistic interview simulations with instant feedback to help you prepare for any question." data-fr="Simulations d'entretien réalistes avec feedback instantané pour vous préparer à toutes les questions.">Realistic interview simulations with instant feedback to help you prepare for any question.</p>
+                </div>
+                <div class="feature-card" onclick="showPage('resume')">
+                    <h3 data-en="Resume Analysis" data-fr="Analyse CV">Resume Analysis</h3>
+                    <p data-en="Get detailed feedback on your resume with suggestions to stand out from the crowd." data-fr="Obtenez des commentaires détaillés sur votre CV avec des suggestions pour vous démarquer.">Get detailed feedback on your resume with suggestions to stand out from the crowd.</p>
+                </div>
+                <div class="feature-card" onclick="showPage('email')">
+                    <h3 data-en="Email Optimization" data-fr="Optimisation Email">Email Optimization</h3>
+                    <p data-en="Craft compelling cold emails that get responses from recruiters and hiring managers." data-fr="Rédigez des emails accrocheurs qui obtiennent des réponses des recruteurs.">Craft compelling cold emails that get responses from recruiters and hiring managers.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interview Mode Page -->
+    <div id="interview" class="page">
+        <div class="container interblob-container">
+            <div class="content-section">
+                <h2 data-en="Interview Me" data-fr="Entraînement Entretien">Interview Me</h2>
+                <p data-en="Practice interviews with our AI interviewer. Get real-time feedback and improve your responses." data-fr="Entraînez-vous avec notre IA. Obtenez des retours en temps réel et améliorez vos réponses.">Practice interviews with our AI interviewer. Get real-time feedback and improve your responses.</p>
+            </div>
+
+            <div class="avatar-section">
+                <div class="avatar-wrapper">
+                    <div class="avatar-circle" id="avatarCircle">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="white" opacity="0.9">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                        </svg>
+                    </div>
+                    <div class="avatar-status" id="avatarStatus" data-en="Ready" data-fr="Prêt">Ready</div>
+                </div>
+            </div>
+
+            <div class="status-box">
+                <div class="status-text" id="statusText" data-en='Click "Start Interview" to begin' data-fr='Cliquez sur "Commencer" pour débuter'>Click "Start Interview" to begin</div>
+            </div>
+
+            <div class="controls-box">
+                <button class="start-button" id="startButton" data-en="Start Interview" data-fr="Commencer l'Entretien">Start Interview</button>
+
+                <div class="recording-controls" id="recordingControls">
+                    <div style="text-align: center;">
+                        <button class="record-button" id="recordButton">
+                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
+                            </svg>
+                            <span data-en="Talk to InterBlob" data-fr="Parler à InterBlob">Talk to InterBlob</span>
+                        </button>
+                    </div>
+
+                    <div class="text-input-row">
+                        <input type="text" class="text-input" id="textInput" data-en="Or type your response here..." data-fr="Ou tapez votre réponse ici..." placeholder="Or type your response here...">
+                        <button class="send-button" id="sendButton" data-en="Send" data-fr="Envoyer">Send</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="conversation-box">
+                <h3 class="conversation-title" data-en="Conversation" data-fr="Conversation">Conversation</h3>
+                <div class="conversation-history" id="conversationHistory">
+                    <div class="empty-state" data-en='Click "Start Interview" to begin' data-fr='Cliquez sur "Commencer" pour débuter'>Click "Start Interview" to begin</div>
+                </div>
+                <button class="feedback-button" id="feedbackButton" disabled data-en="Get Interview Feedback" data-fr="Obtenir des Retours">Get Interview Feedback</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Resume Page -->
+    <div id="resume" class="page">
+        <div class="container interblob-container">
+            <div class="content-section">
+                <h2 data-en="Resume/CV Feedback" data-fr="Analyse de CV">Resume/CV Feedback</h2>
+                <p data-en="Upload your resume and get detailed feedback with an overall grade." data-fr="Téléchargez votre CV et obtenez des commentaires détaillés avec une note globale.">Upload your resume and get detailed feedback with an overall grade.</p>
+            </div>
+
+            <div class="avatar-section">
+                <div class="avatar-wrapper">
+                    <div class="avatar-circle" id="resumeAvatarCircle">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="white" opacity="0.9">
+                            <path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zM6 20V4h7v5h5v11H6z"/>
+                        </svg>
+                    </div>
+                    <div class="avatar-status" id="resumeAvatarStatus" data-en="Ready to analyze" data-fr="Prêt à analyser">Ready to analyze</div>
+                </div>
+            </div>
+
+            <div class="status-box">
+                <div class="status-text" id="resumeStatusText" data-en="Upload your resume to get started" data-fr="Téléchargez votre CV pour commencer">Upload your resume to get started</div>
+            </div>
+
+            <!-- Grade Display -->
+            <div class="grade-card" id="resumeGradeCard" style="display: none;">
+                <div class="grade-header">
+                    <h3 data-en="Resume Grade" data-fr="Note du CV">Resume Grade</h3>
+                </div>
+                <div class="grade-circle-wrapper">
+                    <div class="grade-circle">
+                        <span class="grade-letter" id="resumeGradeLetter">-</span>
+                        <span class="grade-score" id="resumeGradeScore">-/100</span>
+                    </div>
+                </div>
+                <div class="grade-metrics">
+                    <div class="metric">
+                        <span class="metric-label" data-en="ATS Score" data-fr="Score ATS">ATS Score</span>
+                        <div class="metric-bar">
+                            <div class="metric-fill" id="atsScore" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label" data-en="Content Quality" data-fr="Qualité du Contenu">Content Quality</span>
+                        <div class="metric-bar">
+                            <div class="metric-fill" id="contentScore" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">Format & Design</span>
+                        <div class="metric-bar">
+                            <div class="metric-fill" id="formatScore" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upload Section -->
+            <div class="controls-box" id="resumeUploadBox">
+                <div class="upload-area" id="resumeUploadArea">
+                    <input type="file" id="resumeFileInput" accept=".pdf,.txt" style="display: none;">
+                    <label for="resumeFileInput" style="cursor: pointer; display: block; text-align: center;">
+                        <svg width="64" height="64" fill="none" stroke="#2563eb" viewBox="0 0 24 24" style="margin: 0 auto 20px;">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                        </svg>
+                        <p data-en="Click to upload your resume" data-fr="Cliquez pour télécharger votre CV" style="font-size: 18px; font-weight: 700; color: #1e293b; margin-bottom: 8px;">Click to upload your resume</p>
+                        <p data-en="PDF or TXT (max 10MB)" data-fr="PDF ou TXT (max 10MB)" style="font-size: 14px; color: #64748b;">PDF or TXT (max 10MB)</p>
+                        <p id="resumeFileName" style="font-size: 14px; color: #2563eb; margin-top: 12px; font-weight: 600;"></p>
+                    </label>
+                    <button id="analyzeResumeBtn" class="start-button" style="margin-top: 20px; display: none;" data-en="Analyze Resume" data-fr="Analyser le CV">Analyze Resume</button>
+                </div>
+            </div>
+
+            <!-- Feedback Display -->
+            <div class="conversation-box" id="resumeFeedbackBox" style="display: none;">
+                <h3 class="conversation-title" data-en="Detailed Feedback" data-fr="Retour Détaillé">Detailed Feedback</h3>
+                <div class="conversation-history" id="resumeFeedbackContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Email Page -->
+    <div id="email" class="page">
+        <div class="container interblob-container">
+            <div class="content-section">
+                <h2 data-en="Cold Email Feedback" data-fr="Analyse d'Email">Cold Email Feedback</h2>
+                <p data-en="Paste your cold email and get instant feedback with a detailed grade." data-fr="Collez votre email et obtenez un retour instantané avec une note détaillée.">Paste your cold email and get instant feedback with a detailed grade.</p>
+            </div>
+
+            <div class="avatar-section">
+                <div class="avatar-wrapper">
+                    <div class="avatar-circle" id="emailAvatarCircle">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="white" opacity="0.9">
+                            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                    </div>
+                    <div class="avatar-status" id="emailAvatarStatus" data-en="Ready to review" data-fr="Prêt à analyser">Ready to review</div>
+                </div>
+            </div>
+
+            <div class="status-box">
+                <div class="status-text" id="emailStatusText" data-en="Paste your cold email to get started" data-fr="Collez votre email pour commencer">Paste your cold email to get started</div>
+            </div>
+
+            <!-- Grade Display -->
+            <div class="grade-card" id="emailGradeCard" style="display: none;">
+                <div class="grade-header">
+                    <h3 data-en="Email Grade" data-fr="Note de l'Email">Email Grade</h3>
+                </div>
+                <div class="grade-circle-wrapper">
+                    <div class="grade-circle">
+                        <span class="grade-letter" id="emailGradeLetter">-</span>
+                        <span class="grade-score" id="emailGradeScore">-/100</span>
+                    </div>
+                </div>
+                <div class="grade-metrics">
+                    <div class="metric">
+                        <span class="metric-label" data-en="Subject Line" data-fr="Ligne d'Objet">Subject Line</span>
+                        <div class="metric-bar">
+                            <div class="metric-fill" id="subjectScore" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label" data-en="Opening Hook" data-fr="Accroche d'Ouverture">Opening Hook</span>
+                        <div class="metric-bar">
+                            <div class="metric-fill" id="hookScore" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label" data-en="Call-to-Action" data-fr="Appel à l'Action">Call-to-Action</span>
+                        <div class="metric-bar">
+                            <div class="metric-fill" id="ctaScore" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Email Input Section -->
+            <div class="controls-box">
+                <div class="email-input-section">
+                    <label data-en="Subject Line" data-fr="Ligne d'Objet" style="display: block; font-weight: 700; margin-bottom: 8px; color: #1e293b;">Subject Line</label>
+                    <input type="text" id="emailSubject" class="text-input" data-en="Enter your email subject line..." data-fr="Entrez la ligne d'objet..." placeholder="Enter your email subject line..." style="width: 100%; margin-bottom: 20px;">
+                    
+                    <label data-en="Email Body" data-fr="Corps de l'Email" style="display: block; font-weight: 700; margin-bottom: 8px; color: #1e293b;">Email Body</label>
+                    <textarea id="emailBody" class="email-textarea" data-en="Paste your cold email here..." data-fr="Collez votre email ici..." placeholder="Paste your cold email here..."></textarea>
+                    
+                    <button id="analyzeEmailBtn" class="start-button" style="margin-top: 20px;" data-en="Analyze Email" data-fr="Analyser l'Email">Analyze Email</button>
+                </div>
+            </div>
+
+            <!-- Feedback Display -->
+            <div class="conversation-box" id="emailFeedbackBox" style="display: none;">
+                <h3 class="conversation-title" data-en="Detailed Feedback" data-fr="Retour Détaillé">Detailed Feedback</h3>
+                <div class="conversation-history" id="emailFeedbackContent"></div>
+                
+                <div style="margin-top: 30px; padding-top: 30px; border-top: 2px solid #e5e7eb;">
+                    <h4 data-en="Ask Questions" data-fr="Poser des Questions" style="font-weight: 700; margin-bottom: 15px; color: #1e293b;">Ask Questions</h4>
+                    <div class="text-input-row">
+                        <input type="text" class="text-input" id="emailQuestionInput" data-en="Ask about cold email best practices..." data-fr="Demandez des conseils..." placeholder="Ask about cold email best practices...">
+                        <button class="send-button" id="emailQuestionBtn" data-en="Send" data-fr="Envoyer">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- How it Works Page -->
+    <div id="how" class="page">
+        <div class="container">
+            <div class="content-section">
+                <h2 data-en="How it Works" data-fr="Comment ça marche">How it Works</h2>
+                <p data-en="Getting started with Intervue AI is simple. Follow these steps to accelerate your career growth." data-fr="Commencer avec Intervue AI est simple. Suivez ces étapes pour accélérer votre croissance professionnelle.">Getting started with Intervue AI is simple. Follow these steps to accelerate your career growth.</p>
+                
+                <div class="steps">
+                    <div class="step">
+                        <h3><span class="step-number">1</span><span data-en="Choose Your Tool" data-fr="Choisissez Votre Outil">Choose Your Tool</span></h3>
+                        <p data-en="Select from Interview Mode, Resume Feedback, or Email Analysis based on your current needs." data-fr="Choisissez parmi Mode Entretien, Analyse CV, ou Analyse Email selon vos besoins.">Select from Interview Mode, Resume Feedback, or Email Analysis based on your current needs.</p>
+                    </div>
+                    <div class="step">
+                        <h3><span class="step-number">2</span><span data-en="Submit Your Content" data-fr="Soumettez Votre Contenu">Submit Your Content</span></h3>
+                        <p data-en="Upload your resume, paste your email, or start an interview practice session." data-fr="Téléchargez votre CV, collez votre email, ou commencez une session d'entretien.">Upload your resume, paste your email, or start an interview practice session.</p>
+                    </div>
+                    <div class="step">
+                        <h3><span class="step-number">3</span><span data-en="Receive AI Analysis" data-fr="Recevez l'Analyse IA">Receive AI Analysis</span></h3>
+                        <p data-en="Our advanced AI analyzes your content and provides detailed feedback." data-fr="Notre IA avancée analyse votre contenu et fournit des retours détaillés.">Our advanced AI analyzes your content and provides detailed feedback.</p>
+                    </div>
+                    <div class="step">
+                        <h3><span class="step-number">4</span><span data-en="Implement & Improve" data-fr="Appliquez & Améliorez">Implement & Improve</span></h3>
+                        <p data-en="Apply the suggestions, iterate, and watch your career opportunities multiply." data-fr="Appliquez les suggestions, itérez, et voyez vos opportunités de carrière se multiplier.">Apply the suggestions, iterate, and watch your career opportunities multiply.</p>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 60px;">
+                    <button class="cta-button" onclick="showPage('interview')" data-en="Get Started Now" data-fr="Commencer Maintenant">Get Started Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Us Page -->
+    <div id="about" class="page">
+        <div class="container">
+            <div class="content-section">
+                <h2 data-en="About Us" data-fr="À propos">About Us</h2>
+                <p data-en="Committed to help people all around the world land their dream job!" data-fr="Engagé à aider les gens du monde entier à décrocher l'emploi de leurs rêves !">Committed to help people all around the world land their dream job!</p>
+                
+                <div class="steps">
+                    <div class="step">
+                        <h3><span class="step-number"></span><span data-en="Developer" data-fr="Développeur">Developer</span></h3>
+                        <p data-en="Hi, I'm Thomas de Chillaz, an aspiring full-stack developer passionate about AI and Data, currently studying at CentraleSupélec in France." data-fr="Salut, je suis Thomas de Chillaz, un développeur full-stack en devenir passionné par l'IA et les données, actuellement étudiant à CentraleSupélec en France.">Hi, I'm Thomas de Chillaz, an aspiring full-stack developer passionate about AI and Data, currently studying at CentraleSupélec in France.</p>
+                        <p data-en="Thanks for trying out Intervue AI!" data-fr="Merci d'essayer Intervue AI !">Thanks for trying out Intervue AI!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Intervue AI. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const SERVER_URL = 'http://localhost:5000';
+        const VOICE_ID_EN = 'UgBBYS2sOqTuMpoF3BR0';  // (English)
+        const VOICE_ID_FR = 'UgBBYS2sOqTuMpoF3BR0';  // (French)
+        
+        let isRecording = false;
+        let isSpeaking = false;
+        let conversation = [];
+        let mediaRecorder = null;
+        let audioChunks = [];
+        const audioQueue = [];
+        let isPlayingAudio = false;
+
+        // DOM elements
+        const avatarCircle = document.getElementById('avatarCircle');
+        const avatarStatus = document.getElementById('avatarStatus');
+        const statusText = document.getElementById('statusText');
+        const startButton = document.getElementById('startButton');
+        const recordingControls = document.getElementById('recordingControls');
+        const recordButton = document.getElementById('recordButton');
+        const textInput = document.getElementById('textInput');
+        const sendButton = document.getElementById('sendButton');
+        const conversationHistory = document.getElementById('conversationHistory');
+        const feedbackButton = document.getElementById('feedbackButton');
+
+        // Resume elements
+        const resumeAvatarCircle = document.getElementById('resumeAvatarCircle');
+        const resumeAvatarStatus = document.getElementById('resumeAvatarStatus');
+        const resumeStatusText = document.getElementById('resumeStatusText');
+        const resumeFileInput = document.getElementById('resumeFileInput');
+        const resumeFileName = document.getElementById('resumeFileName');
+        const analyzeResumeBtn = document.getElementById('analyzeResumeBtn');
+        const resumeGradeCard = document.getElementById('resumeGradeCard');
+        const resumeFeedbackBox = document.getElementById('resumeFeedbackBox');
+        const resumeFeedbackContent = document.getElementById('resumeFeedbackContent');
+
+        // Email elements
+        const emailAvatarCircle = document.getElementById('emailAvatarCircle');
+        const emailAvatarStatus = document.getElementById('emailAvatarStatus');
+        const emailStatusText = document.getElementById('emailStatusText');
+        const emailSubject = document.getElementById('emailSubject');
+        const emailBody = document.getElementById('emailBody');
+        const analyzeEmailBtn = document.getElementById('analyzeEmailBtn');
+        const emailGradeCard = document.getElementById('emailGradeCard');
+        const emailFeedbackBox = document.getElementById('emailFeedbackBox');
+        const emailFeedbackContent = document.getElementById('emailFeedbackContent');
+        const emailQuestionInput = document.getElementById('emailQuestionInput');
+        const emailQuestionBtn = document.getElementById('emailQuestionBtn');
+
+        let emailConversation = [];
+        let currentLanguage = localStorage.getItem('preferredLanguage') || 'en';;
+
+        // LANGUAGE SWITCHING FUNCTION - TRANSLATES ALL UI TEXT
+        function setLanguage(lang) {
+            currentLanguage = lang;
+            document.getElementById('htmlRoot').lang = lang;
+            
+            // Update flag styling
+            document.getElementById('langEN').style.opacity = lang === 'en' ? '1' : '0.4';
+            document.getElementById('langFR').style.opacity = lang === 'fr' ? '1' : '0.4';
+            
+            // Update ALL text elements with data-en and data-fr attributes
+            document.querySelectorAll('[data-en][data-fr]').forEach(element => {
+                const text = element.getAttribute('data-' + lang);
+                if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                    element.placeholder = text;
+                } else {
+                    element.textContent = text;
+                }
+            });
+            
+            // Save language preference
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        // Load saved language preference on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferredLanguage');
+            if (savedLang) {
+                setLanguage(savedLang);
+            }
+        });
+
+        // Page navigation
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        // Avatar animation
+        function setAvatarSpeaking(speaking) {
+            isSpeaking = speaking;
+            const svg = avatarCircle.querySelector('svg');
+
+            if (speaking) {
+                avatarCircle.classList.add('speaking');
+                if (svg) svg.classList.add('avatar-pulse');
+                avatarStatus.textContent = currentLanguage === 'en' ? 'Speaking...' : 'Parle...';
+                avatarStatus.classList.add('speaking');
+
+                // Remove existing pings
+                avatarCircle.querySelectorAll('.avatar-ping').forEach(n => n.remove());
+
+                // Add ping animations
+                const ping1 = document.createElement('div');
+                ping1.className = 'avatar-ping';
+                ping1.style.background = 'rgba(37, 99, 235, 0.75)';
+                const ping2 = document.createElement('div');
+                ping2.className = 'avatar-ping';
+                ping2.style.background = 'rgba(124, 58, 237, 0.5)';
+                ping2.style.animationDelay = '0.5s';
+                
+                avatarCircle.appendChild(ping1);
+                avatarCircle.appendChild(ping2);
+            } else {
+                avatarCircle.classList.remove('speaking');
+                if (svg) svg.classList.remove('avatar-pulse');
+                avatarStatus.textContent = currentLanguage === 'en' ? 'Ready' : 'Prêt';
+                avatarStatus.classList.remove('speaking');
+                avatarCircle.querySelectorAll('.avatar-ping').forEach(p => p.remove());
+            }
+        }
+
+        // Strip formatting from text for TTS
+        function stripFormatting(text) {
+            // Remove markdown formatting
+            let cleanText = text
+                .replace(/\*\*(.+?)\*\*/g, '$1')  // Remove bold
+                .replace(/\*(.+?)\*/g, '$1')      // Remove italic
+                .replace(/_(.+?)_/g, '$1')        // Remove underscores
+                .replace(/#{1,6}\s/g, '')         // Remove headers
+                .replace(/`(.+?)`/g, '$1')        // Remove code blocks
+                .replace(/\[(.+?)\]\(.+?\)/g, '$1') // Remove links, keep text
+                .replace(/^[\-\*]\s/gm, '')       // Remove bullet points
+                .replace(/^\d+\.\s/gm, '')        // Remove numbered lists
+                .trim();
+            
+            return cleanText;
+        }
+
+        // Split text into sentences
+        function splitIntoSentences(text) {
+            // Split by periods, question marks, exclamation points followed by space or end
+            return text.match(/[^.!?]+[.!?]+/g) || [text];
+        }
+
+        // Text-to-speech with queueing
+        async function speakText(text) {
+            // Strip formatting before speaking
+            const cleanText = stripFormatting(text);
+            const sentences = splitIntoSentences(cleanText);
+            
+            for (const sentence of sentences) {
+                await queueAndPlayAudio(sentence.trim());
+            }
+        }
+
+        async function queueAndPlayAudio(text) {
+            return new Promise(async (resolve) => {
+                try {
+                    const response = await fetch(`${SERVER_URL}/api/elevenlabs/tts`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ 
+                            text: text, 
+                            voice_id: currentLanguage === 'fr' ? VOICE_ID_FR : VOICE_ID_EN,
+                            language: currentLanguage  // ✅ ADD THIS LINE
+                        })
+                    });
+
+                    if (!response.ok) throw new Error(`TTS failed: ${response.status}`);
+
+                    const audioBlob = await response.blob();
+                    audioQueue.push({ blob: audioBlob, resolve });
+                    
+                    if (!isPlayingAudio) {
+                        playNextInQueue();
+                    }
+                } catch (err) {
+                    console.error('Speech error:', err);
+                    resolve();
+                }
+            });
+        }
+
+        async function playNextInQueue() {
+            if (audioQueue.length === 0) {
+                isPlayingAudio = false;
+                setAvatarSpeaking(false);
+                statusText.textContent = currentLanguage === 'en' ? 'Your turn to speak or type' : 'Votre tour de parler ou d\'écrire';
+                return;
+            }
+
+            isPlayingAudio = true;
+            setAvatarSpeaking(true);
+            statusText.textContent = currentLanguage === 'en' ? 'AI is speaking...' : 'L\'IA parle...';
+
+            const { blob, resolve } = audioQueue.shift();
+            const audioUrl = URL.createObjectURL(blob);
+            const audio = new Audio(audioUrl);
+            
+            audio.onended = () => {
+                URL.revokeObjectURL(audioUrl);
+                resolve();
+                playNextInQueue();
+            };
+
+            audio.onerror = () => {
+                URL.revokeObjectURL(audioUrl);
+                resolve();
+                playNextInQueue();
+            };
+            
+            await audio.play();
+        }
+
+        // Streaming AI response with streaming TTS
+        async function getAIResponseStreaming(userMessage, systemPrompt) {
+            try {
+                const messages = conversation.map(m => ({ role: m.role, content: m.content }));
+                messages.push({ role: 'user', content: userMessage });
+
+                const response = await fetch(`${SERVER_URL}/api/gemini/stream`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        model: 'claude-sonnet-4-20250514',
+                        max_tokens: 1000,
+                        system: systemPrompt,
+                        messages: messages,
+                        stream: true
+                    })
+                });
+
+                if (!response.ok) throw new Error(`AI error: ${response.status}`);
+
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+                let fullText = '';
+                let currentSentence = '';
+                let messageElement = null;
+
+                // Create message element for streaming
+                conversation.push({ role: 'assistant', content: '' });
+                displayConversation();
+                messageElement = conversationHistory.lastElementChild.querySelector('.message-content');
+
+                while (true) {
+                    const { done, value } = await reader.read();
+                    if (done) break;
+
+                    const chunk = decoder.decode(value);
+                    const lines = chunk.split('\n');
+
+                    for (const line of lines) {
+                        if (line.startsWith('data: ')) {
+                            const data = line.slice(6);
+                            if (data === '[DONE]') continue;
+
+                            try {
+                                const parsed = JSON.parse(data);
+                                if (parsed.type === 'content_block_delta' && parsed.delta?.text) {
+                                    const text = parsed.delta.text;
+                                    fullText += text;
+                                    currentSentence += text;
+
+                                    // Update display in real-time
+                                    if (messageElement) {
+                                        messageElement.textContent = fullText;
+                                        conversationHistory.scrollTop = conversationHistory.scrollHeight;
+                                    }
+
+                                    // Check if we have a complete sentence
+                                    if (/[.!?]$/.test(currentSentence.trim())) {
+                                        const sentenceToSpeak = currentSentence.trim();
+                                        currentSentence = '';
+                                        // Queue TTS for this sentence (stripped of formatting)
+                                        const cleanSentence = stripFormatting(sentenceToSpeak);
+                                        queueAndPlayAudio(cleanSentence);
+                                    }
+                                }
+                            } catch (e) {
+                                // Ignore parse errors
+                            }
+                        }
+                    }
+                }
+
+                // Speak any remaining text
+                if (currentSentence.trim()) {
+                    const cleanSentence = stripFormatting(currentSentence.trim());
+                    queueAndPlayAudio(cleanSentence);
+                }
+
+                // Update conversation with final text
+                conversation[conversation.length - 1].content = fullText;
+                return fullText;
+
+            } catch (err) {
+                console.error('AI error:', err);
+                statusText.textContent = (currentLanguage === 'en' ? 'AI error: ' : 'Erreur IA: ') + err.message;
+                return null;
+            }
+        }
+
+        // Speech-to-text
+        async function transcribeAudio(audioBlob) {
+            try {
+                const formData = new FormData();
+                formData.append('audio', audioBlob, 'recording.webm');
+
+                const response = await fetch(`${SERVER_URL}/api/elevenlabs/stt`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) throw new Error(`STT failed: ${response.status}`);
+                const data = await response.json();
+                return data.text;
+            } catch (err) {
+                console.error('Transcription error:', err);
+                statusText.textContent = (currentLanguage === 'en' ? 'Transcription error: ' : 'Erreur de transcription: ') + err.message;
+                return null;
+            }
+        }
+
+        // Display conversation
+        function displayConversation() {
+            if (conversation.length === 0) {
+                conversationHistory.innerHTML = '<div class="empty-state">' + (currentLanguage === 'en' ? 'Start interview to begin' : 'Commencer l\'entretien pour débuter') + '</div>';
+                return;
+            }
+
+            conversationHistory.innerHTML = conversation.map(msg => `
+                <div class="message ${msg.role === 'user' ? 'user' : 'assistant'}">
+                    <div class="message-role">${msg.role === 'user' ? (currentLanguage === 'en' ? 'You' : 'Vous') : 'InterBlob'}</div>
+                    <div class="message-content">${msg.content}</div>
+                </div>
+            `).join('');
+            
+            conversationHistory.scrollTop = conversationHistory.scrollHeight;
+        }
+
+        // Handle user message - WITH LANGUAGE-AWARE PROMPTS
+        async function handleUserMessage(text) {
+            if (!text.trim() || isSpeaking) return;
+
+            conversation.push({ role: 'user', content: text });
+            displayConversation();
+            
+            statusText.textContent = currentLanguage === 'en' ? 'AI is thinking...' : 'L\'IA réfléchit...';
+            
+            const systemPrompt = currentLanguage === 'en'
+                ? 'You are a professional interviewer conducting a job interview. Ask thoughtful questions and provide constructive feedback. Keep responses concise (2-3 sentences).'
+                : 'Vous êtes un recruteur professionnel menant un entretien d\'embauche. Posez des questions réfléchies et fournissez des retours constructifs. Gardez vos réponses concises (2-3 phrases).';
+            
+            await getAIResponseStreaming(text, systemPrompt);
+        }
+
+        // Start interview - WITH LANGUAGE-AWARE FIRST QUESTION
+        async function startInterview() {
+            conversation = [];
+            displayConversation();
+            
+            statusText.textContent = currentLanguage === 'en' ? 'Starting interview...' : 'Démarrage de l\'entretien...';
+            startButton.style.display = 'none';
+            recordingControls.classList.add('active');
+            feedbackButton.disabled = false;
+            
+            const firstQuestion = currentLanguage === 'en'
+                ? "Hello, I'm excited to interview you today, let's start: Tell me about yourself and your background."
+                : "Bonjour, je suis ravi de vous interviewer aujourd'hui, commençons : Parlez-moi de vous et de votre parcours.";
+            
+            conversation.push({ role: 'assistant', content: '' });
+            displayConversation();
+            
+            // Simulate streaming for first question
+            const messageElement = conversationHistory.lastElementChild.querySelector('.message-content');
+            let displayedText = '';
+            for (let i = 0; i < firstQuestion.length; i++) {
+                displayedText += firstQuestion[i];
+                messageElement.textContent = displayedText;
+                await new Promise(resolve => setTimeout(resolve, 20));
+            }
+            
+            conversation[conversation.length - 1].content = firstQuestion;
+            await speakText(firstQuestion);
+        }
+
+        // Recording
+        async function startRecording() {
+            if (isSpeaking) {
+                statusText.textContent = currentLanguage === 'en' ? 'Please wait for AI to finish speaking' : 'Attendez que l\'IA finisse de parler';
+                return;
+            }
+
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                mediaRecorder = new MediaRecorder(stream);
+                audioChunks = [];
+
+                mediaRecorder.ondataavailable = (e) => audioChunks.push(e.data);
+                
+                mediaRecorder.onstop = async () => {
+                    const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+                    stream.getTracks().forEach(track => track.stop());
+                    
+                    statusText.textContent = currentLanguage === 'en' ? 'Transcribing your speech...' : 'Transcription de votre parole...';
+                    const transcription = await transcribeAudio(audioBlob);
+                    
+                    if (transcription) {
+                        await handleUserMessage(transcription);
+                    }
+                };
+
+                mediaRecorder.start();
+                isRecording = true;
+                statusText.textContent = currentLanguage === 'en' ? 'Recording... Speak your answer now' : 'Enregistrement... Parlez maintenant';
+                recordButton.innerHTML = `
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" stroke-width="2"></circle>
+                        <rect x="9" y="9" width="6" height="6" fill="currentColor"></rect>
+                    </svg>
+                    <span>${currentLanguage === 'en' ? 'Stop Recording' : 'Arrêter'}</span>
+                `;
+                recordButton.classList.add('recording');
+            } catch (err) {
+                statusText.textContent = (currentLanguage === 'en' ? 'Microphone access denied: ' : 'Accès micro refusé: ') + err.message;
+                console.error(err);
+            }
+        }
+
+        function stopRecording() {
+            if (mediaRecorder && isRecording) {
+                mediaRecorder.stop();
+                isRecording = false;
+                statusText.textContent = currentLanguage === 'en' ? 'Processing your audio...' : 'Traitement de votre audio...';
+                recordButton.innerHTML = `
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
+                    </svg>
+                    <span>${currentLanguage === 'en' ? 'Talk to InterBlob' : 'Parler à InterBlob'}</span>
+                `;
+                recordButton.classList.remove('recording');
+            }
+        }
+
+        // Generate feedback - WITH LANGUAGE-AWARE PROMPTS
+        async function generateFeedback() {
+            if (conversation.length === 0) {
+                statusText.textContent = currentLanguage === 'en' ? 'No conversation to analyze' : 'Pas de conversation à analyser';
+                return;
+            }
+
+            const feedbackPrompt = (currentLanguage === 'en'
+                ? 'Please analyze this interview conversation and provide comprehensive feedback on the candidate\'s performance. Be specific and constructive. Concise (3-4 sentences), with no special characters (bold, italic, underlined) but keeping an understandable format (using line breaks).\n\n'
+                : 'Veuillez analyser cette conversation d\'entretien et fournir des commentaires complets sur la performance du candidat. Soyez spécifique et constructif. Concis (3-4 phrases), sans caractères spéciaux (gras, italique, souligné) mais en gardant un format compréhensible (avec sauts de ligne).\n\n')
+                + conversation.map(m => `${m.role === 'user' ? 'Candidate' : 'Interviewer'}: ${m.content}`).join('\n\n');
+
+            statusText.textContent = currentLanguage === 'en' ? 'Analyzing interview performance...' : 'Analyse de la performance...';
+            const systemPrompt = currentLanguage === 'en'
+                ? 'You are providing feedback on interview performance. Be constructive and specific. Keep responses concise (3-4 sentences).'
+                : 'Vous fournissez des retours sur la performance en entretien. Soyez constructif et spécifique. Gardez vos réponses concises (3-4 phrases).';
+            await getAIResponseStreaming(feedbackPrompt, systemPrompt);
+        }
+
+        // Event listeners
+        startButton.addEventListener('click', startInterview);
+        recordButton.addEventListener('click', () => isRecording ? stopRecording() : startRecording());
+        sendButton.addEventListener('click', () => {
+            handleUserMessage(textInput.value);
+            textInput.value = '';
+        });
+        textInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                handleUserMessage(textInput.value);
+                textInput.value = '';
+            }
+        });
+        feedbackButton.addEventListener('click', generateFeedback);
+
+        // Resume functionality with streaming
+        resumeFileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                resumeFileName.textContent = (currentLanguage === 'en' ? 'Selected: ' : 'Sélectionné: ') + file.name;
+                analyzeResumeBtn.style.display = 'block';
+            }
+        });
+
+        analyzeResumeBtn.addEventListener('click', async () => {
+            const file = resumeFileInput.files[0];
+            if (!file) {
+                resumeStatusText.textContent = currentLanguage === 'en' ? 'Please select a file' : 'Veuillez sélectionner un fichier';
+                return;
+            }
+
+            setResumeAvatarSpeaking(true);
+            resumeStatusText.textContent = currentLanguage === 'en' 
+                ? 'Analyzing your resume... This may take 30-60 seconds.'
+                : 'Analyse de votre CV... Cela peut prendre 30-60 secondes.';
+            analyzeResumeBtn.disabled = true;
+
+            try {
+                const formData = new FormData();
+                formData.append('resume', file);
+                formData.append('language', currentLanguage);  // SEND LANGUAGE TO SERVER
+
+                const response = await fetch(`${SERVER_URL}/api/analyze-resume/stream`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json().catch(() => ({}));
+                    throw new Error(errorData.error || 'Analysis failed');
+                }
+
+                // Show feedback box
+                resumeFeedbackBox.style.display = 'block';
+                resumeFeedbackContent.innerHTML = '<div class="message assistant"><div class="message-role">' + (currentLanguage === 'en' ? 'Resume Analyst' : 'Analyste CV') + '</div><div class="message-content" id="streamingResumeContent"><span class="streaming-indicator"></span></div></div>';
+                
+                const contentElement = document.getElementById('streamingResumeContent');
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+                let fullText = '';
+                let currentSentence = '';
+
+                while (true) {
+                    const { done, value } = await reader.read();
+                    if (done) break;
+
+                    const chunk = decoder.decode(value);
+                    const lines = chunk.split('\n');
+
+                    for (const line of lines) {
+                        if (line.startsWith('data: ')) {
+                            const data = line.slice(6);
+                            if (data === '[DONE]') continue;
+
+                            try {
+                                const parsed = JSON.parse(data);
+                                if (parsed.type === 'content_block_delta' && parsed.delta?.text) {
+                                    const text = parsed.delta.text;
+                                    fullText += text;
+                                    currentSentence += text;
+
+                                    // Update display
+                                    contentElement.innerHTML = formatFeedback(fullText) + '<span class="streaming-indicator"></span>';
+                                    resumeFeedbackContent.scrollTop = resumeFeedbackContent.scrollHeight;
+
+                                    // Queue TTS for complete sentences (stripped of formatting)
+                                    if (/[.!?]$/.test(currentSentence.trim())) {
+                                        const sentenceToSpeak = stripFormatting(currentSentence.trim());
+                                        currentSentence = '';
+                                        queueAndPlayAudio(sentenceToSpeak);
+                                    }
+                                }
+                            } catch (e) {
+                                // Ignore parse errors
+                            }
+                        }
+                    }
+                }
+
+                // Speak remaining text
+                if (currentSentence.trim()) {
+                    const cleanSentence = stripFormatting(currentSentence.trim());
+                    queueAndPlayAudio(cleanSentence);
+                }
+
+                contentElement.innerHTML = formatFeedback(fullText);
+
+                // Extract grade - WORKS FOR BOTH "Grade:" AND "Note:"
+                const gradeMatch = fullText.match(/(?:Grade|Note|Score):\s*([A-F][+-]?)\s*(?:\((\d+)\/100\))?/i);
+                let gradeLetter = 'B+';
+                let gradeScore = 85;
+                
+                if (gradeMatch) {
+                    gradeLetter = gradeMatch[1];
+                    gradeScore = gradeMatch[2] ? parseInt(gradeMatch[2]) : calculateScoreFromGrade(gradeLetter);
+                }
+
+                // Show grade card
+                resumeGradeCard.style.display = 'block';
+                document.getElementById('resumeGradeLetter').textContent = gradeLetter;
+                document.getElementById('resumeGradeScore').textContent = `${gradeScore}/100`;
+
+                // Animate metric bars
+                setTimeout(() => {
+                    document.getElementById('atsScore').style.width = `${Math.min(gradeScore + 5, 100)}%`;
+                    document.getElementById('contentScore').style.width = `${gradeScore}%`;
+                    document.getElementById('formatScore').style.width = `${Math.max(gradeScore - 10, 60)}%`;
+                }, 100);
+
+                setResumeAvatarSpeaking(false);
+                resumeStatusText.textContent = currentLanguage === 'en' ? 'Analysis complete!' : 'Analyse terminée !';
+                analyzeResumeBtn.disabled = false;
+
+            } catch (err) {
+                console.error('Resume analysis error:', err);
+                resumeStatusText.textContent = (currentLanguage === 'en' ? 'Analysis error: ' : 'Erreur d\'analyse: ') + err.message;
+                setResumeAvatarSpeaking(false);
+                analyzeResumeBtn.disabled = false;
+            }
+        });
+
+        // Email functionality with streaming
+        analyzeEmailBtn.addEventListener('click', async () => {
+            const subject = emailSubject.value.trim();
+            const body = emailBody.value.trim();
+
+            if (!subject || !body) {
+                emailStatusText.textContent = currentLanguage === 'en' ? 'Please enter both subject and body' : 'Veuillez entrer l\'objet et le corps';
+                return;
+            }
+
+            setEmailAvatarSpeaking(true);
+            emailStatusText.textContent = currentLanguage === 'en' ? 'Analyzing your cold email...' : 'Analyse de votre email...';
+            analyzeEmailBtn.disabled = true;
+
+            try {
+                const emailText = `${currentLanguage === 'en' ? 'Subject' : 'Objet'}: ${subject}\n\n${body}`;
+                const systemPrompt = `You are an expert cold email coach. Analyze this email and provide:
+1. An overall grade (A+, A, A-, B+, B, B-, C+, C, C-, D, F) with score out of 100
+2. Scores for: Subject Line, Opening Hook, and Call-to-Action (as percentages).
+3. Detailed feedback on what works and what doesn't. Keep response concise (4-5 sentences).
+4. Specific actionable improvements. Keep response concise (2-3 sentences).
+
+Format: Start with "Grade: [GRADE] ([SCORE]/100)" then provide detailed analysis.`;
+
+                const response = await fetch(`${SERVER_URL}/api/gemini/stream`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        model: 'claude-sonnet-4-20250514',
+                        max_tokens: 2000,
+                        system: systemPrompt,
+                        messages: [{ role: 'user', content: (currentLanguage === 'en' ? 'Analyze this cold email:\n\n' : 'Analysez cet email :\n\n') + emailText }],
+                        stream: true
+                    })
+                });
+
+                if (!response.ok) throw new Error('AI analysis failed');
+
+                // Show feedback box
+                emailFeedbackBox.style.display = 'block';
+                emailFeedbackContent.innerHTML = '<div class="message assistant"><div class="message-role">' + (currentLanguage === 'en' ? 'Email Coach' : 'Coach Email') + '</div><div class="message-content" id="streamingEmailContent"><span class="streaming-indicator"></span></div></div>';
+                
+                const contentElement = document.getElementById('streamingEmailContent');
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+                let fullText = '';
+                let currentSentence = '';
+
+                while (true) {
+                    const { done, value } = await reader.read();
+                    if (done) break;
+
+                    const chunk = decoder.decode(value);
+                    const lines = chunk.split('\n');
+
+                    for (const line of lines) {
+                        if (line.startsWith('data: ')) {
+                            const data = line.slice(6);
+                            if (data === '[DONE]') continue;
+
+                            try {
+                                const parsed = JSON.parse(data);
+                                if (parsed.type === 'content_block_delta' && parsed.delta?.text) {
+                                    const text = parsed.delta.text;
+                                    fullText += text;
+                                    currentSentence += text;
+
+                                    // Update display
+                                    contentElement.innerHTML = formatFeedback(fullText) + '<span class="streaming-indicator"></span>';
+                                    emailFeedbackContent.scrollTop = emailFeedbackContent.scrollHeight;
+
+                                    // Queue TTS for complete sentences (stripped of formatting)
+                                    if (/[.!?]$/.test(currentSentence.trim())) {
+                                        const sentenceToSpeak = stripFormatting(currentSentence.trim());
+                                        currentSentence = '';
+                                        queueAndPlayAudio(sentenceToSpeak);
+                                    }
+                                }
+                            } catch (e) {
+                                // Ignore parse errors
+                            }
+                        }
+                    }
+                }
+
+                // Speak remaining text
+                if (currentSentence.trim()) {
+                    const cleanSentence = stripFormatting(currentSentence.trim());
+                    queueAndPlayAudio(cleanSentence);
+                }
+
+                contentElement.innerHTML = formatFeedback(fullText);
+
+                // Extract grade
+                const gradeMatch = fullText.match(/Grade:\s*([A-F][+-]?)\s*\((\d+)\/100\)/i);
+                let gradeLetter = 'B';
+                let gradeScore = 80;
+                
+                if (gradeMatch) {
+                    gradeLetter = gradeMatch[1];
+                    gradeScore = parseInt(gradeMatch[2]);
+                }
+
+                // Show grade card
+                emailGradeCard.style.display = 'block';
+                document.getElementById('emailGradeLetter').textContent = gradeLetter;
+                document.getElementById('emailGradeScore').textContent = `${gradeScore}/100`;
+
+                // Animate metric bars
+                setTimeout(() => {
+                    document.getElementById('subjectScore').style.width = `${Math.min(gradeScore + 10, 100)}%`;
+                    document.getElementById('hookScore').style.width = `${gradeScore}%`;
+                    document.getElementById('ctaScore').style.width = `${Math.max(gradeScore - 5, 65)}%`;
+                }, 100);
+
+                // Initialize conversation
+                emailConversation = [
+                    { role: 'user', content: (currentLanguage === 'en' ? 'Analyze this cold email:\n\n' : 'Analysez cet email :\n\n') + emailText },
+                    { role: 'assistant', content: fullText }
+                ];
+
+                setEmailAvatarSpeaking(false);
+                emailStatusText.textContent = currentLanguage === 'en' ? 'Analysis complete!' : 'Analyse terminée !';
+                analyzeEmailBtn.disabled = false;
+
+            } catch (err) {
+                console.error('Email analysis error:', err);
+                emailStatusText.textContent = (currentLanguage === 'en' ? 'Analysis error: ' : 'Erreur d\'analyse: ') + err.message;
+                setEmailAvatarSpeaking(false);
+                analyzeEmailBtn.disabled = false;
+            }
+        });
+
+        // Email follow-up questions
+        async function handleEmailQuestion() {
+            const question = emailQuestionInput.value.trim();
+            if (!question) return;
+
+            emailConversation.push({ role: 'user', content: question });
+            
+            const userMessage = `<div class="message user"><div class="message-role">${currentLanguage === 'en' ? 'You' : 'Vous'}</div><div class="message-content">${question}</div></div>`;
+            emailFeedbackContent.innerHTML += userMessage;
+            emailQuestionInput.value = '';
+
+            emailStatusText.textContent = currentLanguage === 'en' ? 'AI is thinking...' : 'L\'IA réfléchit...';
+
+            try {
+                const systemPrompt = currentLanguage === 'en'
+                    ? 'You are an expert cold email coach. Provide practical, actionable advice with examples. Concise (2-3 sentences).'
+                    : 'Vous êtes un expert en emails commerciaux. Fournissez des conseils pratiques et actionnables avec des exemples. Concis (2-3 phrases).';
+                const response = await fetch(`${SERVER_URL}/api/gemini/stream`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        model: 'claude-sonnet-4-20250514',
+                        max_tokens: 1000,
+                        system: systemPrompt,
+                        messages: emailConversation,
+                        stream: true
+                    })
+                });
+
+                if (!response.ok) throw new Error('AI error');
+
+                // Add streaming message
+                emailFeedbackContent.innerHTML += '<div class="message assistant"><div class="message-role">' + (currentLanguage === 'en' ? 'Email Coach' : 'Coach Email') + '</div><div class="message-content" id="streamingQuestionContent"><span class="streaming-indicator"></span></div></div>';
+                
+                const contentElement = document.getElementById('streamingQuestionContent');
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+                let fullText = '';
+                let currentSentence = '';
+
+                while (true) {
+                    const { done, value } = await reader.read();
+                    if (done) break;
+
+                    const chunk = decoder.decode(value);
+                    const lines = chunk.split('\n');
+
+                    for (const line of lines) {
+                        if (line.startsWith('data: ')) {
+                            const data = line.slice(6);
+                            if (data === '[DONE]') continue;
+
+                            try {
+                                const parsed = JSON.parse(data);
+                                if (parsed.type === 'content_block_delta' && parsed.delta?.text) {
+                                    const text = parsed.delta.text;
+                                    fullText += text;
+                                    currentSentence += text;
+
+                                    contentElement.innerHTML = formatFeedback(fullText) + '<span class="streaming-indicator"></span>';
+                                    emailFeedbackContent.scrollTop = emailFeedbackContent.scrollHeight;
+
+                                    if (/[.!?]$/.test(currentSentence.trim())) {
+                                        const sentenceToSpeak = stripFormatting(currentSentence.trim());
+                                        currentSentence = '';
+                                        queueAndPlayAudio(sentenceToSpeak);
+                                    }
+                                }
+                            } catch (e) {
+                                // Ignore
+                            }
+                        }
+                    }
+                }
+
+                if (currentSentence.trim()) {
+                    const cleanSentence = stripFormatting(currentSentence.trim());
+                    queueAndPlayAudio(cleanSentence);
+                }
+
+                contentElement.innerHTML = formatFeedback(fullText);
+                emailConversation.push({ role: 'assistant', content: fullText });
+                emailStatusText.textContent = currentLanguage === 'en' ? 'Ask another question or analyze a new email' : 'Posez une autre question ou analysez un nouvel email';
+
+            } catch (err) {
+                emailStatusText.textContent = (currentLanguage === 'en' ? 'Error: ' : 'Erreur: ') + err.message;
+            }
+        }
+
+        emailQuestionBtn.addEventListener('click', handleEmailQuestion);
+        emailQuestionInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleEmailQuestion();
+        });
+
+        // Helper functions
+        function setResumeAvatarSpeaking(speaking) {
+            const svg = resumeAvatarCircle.querySelector('svg');
+            if (speaking) {
+                resumeAvatarCircle.classList.add('speaking');
+                if (svg) svg.classList.add('avatar-pulse');
+                resumeAvatarStatus.textContent = currentLanguage === 'en' ? 'Analyzing...' : 'Analyse...';
+                resumeAvatarStatus.classList.add('speaking');
+            } else {
+                resumeAvatarCircle.classList.remove('speaking');
+                if (svg) svg.classList.remove('avatar-pulse');
+                resumeAvatarStatus.textContent = currentLanguage === 'en' ? 'Analysis complete' : 'Analyse terminée';
+                resumeAvatarStatus.classList.remove('speaking');
+            }
+        }
+
+        function setEmailAvatarSpeaking(speaking) {
+            const svg = emailAvatarCircle.querySelector('svg');
+            if (speaking) {
+                emailAvatarCircle.classList.add('speaking');
+                if (svg) svg.classList.add('avatar-pulse');
+                emailAvatarStatus.textContent = currentLanguage === 'en' ? 'Analyzing...' : 'Analyse...';
+                emailAvatarStatus.classList.add('speaking');
+            } else {
+                emailAvatarCircle.classList.remove('speaking');
+                if (svg) svg.classList.remove('avatar-pulse');
+                emailAvatarStatus.textContent = currentLanguage === 'en' ? 'Analysis complete' : 'Analyse terminée';
+                emailAvatarStatus.classList.remove('speaking');
+            }
+        }
+
+        function calculateScoreFromGrade(grade) {
+            const gradeMap = {
+                'A+': 98, 'A': 95, 'A-': 92,
+                'B+': 88, 'B': 85, 'B-': 82,
+                'C+': 78, 'C': 75, 'C-': 72,
+                'D': 65, 'F': 50
+            };
+            return gradeMap[grade] || 75;
+        }
+
+        function formatFeedback(text) {
+            // Remove grade line if present - WORKS FOR BOTH "Grade:" AND "Note:"
+            text = text.replace(/(?:Grade|Note):\s*[A-F][+-]?\s*\(\d+\/100\)/i, '');
+            
+            // Format headers
+            text = text.replace(/^### (.+)$/gm, '<h4 style="font-size: 16px; font-weight: 700; color: #1e293b; margin: 20px 0 10px;">$1</h4>');
+            text = text.replace(/^## (.+)$/gm, '<h4 style="font-size: 18px; font-weight: 700; color: #1e293b; margin: 24px 0 12px;">$1</h4>');
+            
+            // Format bold
+            text = text.replace(/\*\*(.+?)\*\*/g, '<strong style="font-weight: 700; color: #1e293b;">$1</strong>');
+            
+            // Format bullet points
+            text = text.replace(/^[\-\*] (.+)$/gm, '<li style="padding: 4px 0 4px 20px; position: relative; color: #475569;">$1</li>');
+            
+            // Wrap lists
+            text = text.replace(/(<li[^>]*>.*<\/li>)/gs, '<ul style="list-style: none; padding-left: 0; margin: 12px 0;">$1</ul>');
+            
+            // Format line breaks
+            text = text.replace(/\n\n/g, '<br><br>');
+            text = text.replace(/\n/g, '<br>');
+            
+            return text;
+        }
+    </script>
+</body>
+</html>
